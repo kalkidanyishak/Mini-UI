@@ -1,0 +1,36 @@
+<script>
+  let k = new Proxy({}, {
+    /*
+    reactivity is handled here but we need a better build
+    because this is not flexible enough for the syntax
+    but the build tool is a very minimal .exe file
+    no nodemodules blackholes
+
+    making this component based is very difficult
+
+    */
+  });
+  k.name = "kalkidan";
+
+  k.nightmode = true;
+
+  k.bg$ = k.nightmode ? "black" : "white";
+  // This is a reactive variable that changes based on the night mode setting
+  //reactive$=...k.dependency..
+
+  let changeName = () => {
+    k.name = "kalkidan";
+  };
+
+  let changeValue = (el) => {
+    k.name = el.value;
+  };
+</script>
+<div>
+  <div class="{bg$}">my name is {name}</div>
+  <div>my background color is {bg$}</div>
+
+  <input type="text" onchange="changeValue(this)" />
+
+  <button onclick="changeName()">Change Name</button>
+</div>
